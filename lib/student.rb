@@ -19,7 +19,7 @@ class Student
     table = DB[:conn].execute(sql)
     table.map do |row|
       self.new_from_db(row)
-    end 
+    end
   end
 
   def self.find_by_name(name)
@@ -47,14 +47,21 @@ class Student
       id INTEGER PRIMARY KEY,
       name TEXT,
       grade TEXT
-    )
+    );
     SQL
 
     DB[:conn].execute(sql)
   end
 
   def self.drop_table
-    sql = "DROP TABLE IF EXISTS students"
+    sql = "DROP TABLE IF EXISTS students;"
     DB[:conn].execute(sql)
+  end
+
+  def self.count_all_students_in_grade_9
+    sql = <<-SQL
+      SELECT * FROM students
+      WHERE grade = 9;
+    SQL
   end
 end
