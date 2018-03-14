@@ -93,9 +93,9 @@ class Student
     sql = <<-SQL
       SELECT * FROM students
       WHERE grade = 10
-      ORDER BY id 
+      ORDER BY id
       LIMIT 1;
     SQL
-    self.new_from_db(DB[:conn].execute(sql))
+    self.new_from_db(DB[:conn].execute(sql).first)
   end
 end
